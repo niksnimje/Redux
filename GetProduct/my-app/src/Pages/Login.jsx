@@ -9,16 +9,11 @@ function Login() {
 
     const [email, setemail] = useState("")
     const [pass, setpass] = useState("")
-    const { isLoading, isError } = useSelector((store) => store.AuthReducer)
+    const { isLoading, isError, token } = useSelector((store) => store.AuthReducer)
     const dispatch = useDispatch()
 
-    const hendalSubmit = (e) => {
-        e.preventDefault()
-        const userdata = {
-            email,
-            password: pass
-        }
 
+    const LoginReq = (userdata) => {
         // req
         dispatch({ type: LOGIN_REQ })
         axios.post("https://reqres.in/api/login", userdata)
@@ -37,7 +32,18 @@ function Login() {
             )
     }
 
-    return isLoading ? <h1>Loding...</h1> : isError ? <h1>Something Went Worng</h1> : (
+    const hendalSubmit = (e) => {
+        e.preventDefault()
+        const userdata = {
+            email,
+            password: pass
+        }
+        LoginReq(userdata)
+
+
+    }
+
+    return isLoading ? (<h1>Loding...</h1>) : isError ? (<h1>Something Went Worng</h1>) : (
         <>
             <h1>Login</h1>
 

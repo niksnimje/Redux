@@ -11,7 +11,7 @@ export const reducer = (state = initalstate, action) => {
         case LOGIN_REQ:
             return { isLoading: true, isError: false, token: null }
         case LOGIN_SUCCES:
-            return { isLoading: false, isError: false, token:action.payload }
+            return { isLoading: false, isError: false, token: action.payload }
         case LOGIN_FILED:
             return { isLoading: false, isError: true, token: null }
         default:
