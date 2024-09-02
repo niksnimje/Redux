@@ -1,68 +1,56 @@
-import axios from "axios";
-import { useState } from "react";
-import { useSelector,useDispatch } from "react-redux";
-import { LOGIN_FILED, LOGIN_REQ, LOGIN_SUCCES } from "../"
+import axios from "axios"
+import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { LOGIN_FILED, LOGIN_REQ, LOGIN_SUCCES } from "../Redux/ActionType"
+
+
 
 function Login() {
-    const [email, setEmail] = useState("");
-    const [pass, setPass] = useState("");
-    
-    const dispatch=useDispatch()
 
-    const { isLoading, isError ,token} = useSelector((store) => store.AuthReducer);
+    const [email, setemail] = useState("")
+    const [pass, setpass] = useState("")
+    const { isLoading, isError } = useSelector((store) => store.AuthReducer)
+    const dispatch = useDispatch()
 
-    const data_sucessful=(userdata)=>{
-        //request
-        dispatch({type:LOGIN_REQ})
+    const hendalSubmit = (e) => {
+        e.preventDefault()
+        const userdata = {
+            email,
+            password: pass
+        }
+
+        // req
+        dispatch({ type: LOGIN_REQ })
         axios.post("https://reqres.in/api/login", userdata)
-        .then((res) => {
-            //succesful
-            dispatch({type:LOGIN_SUCCES,payload:res.data.token})
-            console.log(res.data.token)
-        })
-        .catch((err) => {
-            //eroor
-            dispatch({type:LOGIN_FILED})
-            console.error("Error logging in:", err)
-        });
+            // succes
+
+            .then((res) => {
+                dispatch({ type: LOGIN_SUCCES, payload: res.data.token })
+                console.log(res.data.token)
+            })
+            // err
+
+            .catch((err) => {
+                dispatch({ type: LOGIN_FILED })
+                console.log(err)
+            }
+            )
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const userdata = { email, password:pass };
-        console.log(userdata);
-        data_sucessful(userdata)
-    };
-
-    return isLoading ? (
-        <h1>Loading...</h1>
-    ) : isError ? (
-        <h1>Something Went Wrong</h1>
-    ) : (
+    return isLoading ? <h1>Loding...</h1> : isError ? <h1>Something Went Worng</h1> : (
         <>
             <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="email"
-                    placeholder="Enter Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <br />
-                <input
-                    type="password"
-                    placeholder="Enter Password"
-                    value={pass}
-                    onChange={(e) => setPass(e.target.value)}
-                    required
-                />
-                <br />
-                <button type="submit">Login</button>
+
+            <form onSubmit={(e) => hendalSubmit(e)}>
+                <input onChange={(e) => setemail(e.target.value)} type="text" placeholder="Enter Email" /> <br />
+                <input onChange={(e) => setpass(e.target.value)} type="text" placeholder="Enter Password" /> <br />
+                <input type="submit" />
             </form>
+
             <h6>eve.holt@reqres.in</h6>
+
         </>
-    );
+    )
 }
 
-export default Login;
+export default Login
