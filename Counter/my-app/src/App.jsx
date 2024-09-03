@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 function App() {
 
   const Countervalue = useSelector((store) => store.counter)
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
 
 
   const hendelIncrement = () => {
@@ -20,6 +20,7 @@ function App() {
 
   return (
     <>
+      
       <h1>Counter={Countervalue}</h1>
 
       <button onClick={hendelIncrement}>+</button>
