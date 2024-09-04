@@ -13,6 +13,6 @@ export const reducer = (state = initalstate, action) => {
       return { isLoading: false, isError: false, data: action.payload }
     case GET_PRODUCT_FILED:
       return { isLoading: false, isError: true, data: [] }
-    default: state
+    default: return state
   }
 }

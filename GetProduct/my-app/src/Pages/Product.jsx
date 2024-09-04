@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 function Product() {
 
@@ -19,7 +20,7 @@ function Product() {
 
                     <div key={id} style={{ textAlign: "center", border: "1px solid black" }}>
                         <h3>{title}</h3>
-                        <img src={image} alt="" height={200} width={200} />
+                        <Link to={`/description/${id}`}><img src={image} alt="" height={200} width={200} /></Link>
                         <h2>{price}</h2>
                         <h5>{category}</h5>
                         <p>{description}</p>

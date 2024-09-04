@@ -4,7 +4,8 @@ import Home from './Pages/Home'
 import AddProduct from './Pages/AddProduct'
 import Product from './Pages/Product'
 import Login from './Pages/Login'
-import PrivatePage from './components/PrivatePage'
+import Description from './components/Description'
+// import PrivatePage from './components/PrivatePage'
 
 function AllRoutes() {
     return (
@@ -16,12 +17,12 @@ function AllRoutes() {
                     <Login />
                 } />
                 <Route path='/product' element={
-                    <PrivatePage>
-                        <Product />
-                    </PrivatePage>
+                    // <PrivatePage>
+                    <Product />
+                    // </PrivatePage>
                 } />
+                <Route path='/description/:id' element={<Description />} />
                 <Route path='*' element={<h1>Page is not define</h1>} />
-
             </Routes>
         </>
     )

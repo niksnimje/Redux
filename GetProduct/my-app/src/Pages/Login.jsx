@@ -9,7 +9,7 @@ function Login() {
 
     const [email, setemail] = useState("")
     const [pass, setpass] = useState("")
-    const { isLoading, isError, token } = useSelector((store) => store.AuthReducer)
+    const { isLoading, isError } = useSelector((store) => store.AuthReducer)
     const dispatch = useDispatch()
 
 
@@ -39,8 +39,6 @@ function Login() {
             password: pass
         }
         LoginReq(userdata)
-
-
     }
 
     return isLoading ? (<h1>Loding...</h1>) : isError ? (<h1>Something Went Worng</h1>) : (

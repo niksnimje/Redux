@@ -1,8 +1,8 @@
-import React from 'react'
+
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
-function PrivatePage({ children }) {
+function PrivatePage({ children })  {
 
     const { token } = useSelector((store) => store.AuthReducer)
 
@@ -16,3 +16,6 @@ function PrivatePage({ children }) {
 }
 
 export default PrivatePage
+
+
+
