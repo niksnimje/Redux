@@ -6,10 +6,14 @@ function Product() {
 
     const [data, setdata] = useState([])
 
-    useEffect(() => {
+    const getdata = () => {
         axios.get("http://localhost:3000/product")
             .then((res) => setdata(res.data))
             .catch((err) => console.log(err))
+    }
+
+    useEffect(() => {
+        getdata()
     }, [])
 
     return (
@@ -24,10 +28,11 @@ function Product() {
                         <h2>{price}</h2>
                         <h5>{category}</h5>
                         <p>{description}</p>
+                        <button>Edit</button>
+                        <button>Delete</button>
                     </div>
                 ))}
             </div>
-
         </>
     )
 }
